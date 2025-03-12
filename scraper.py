@@ -8,16 +8,12 @@ def retrieve_icon(url):
         url = 'https://' + url
     print(f"Retrieving favicon for {url}")
     try:
-        response = requests.get(url, timeout = 1)
+        response = requests.get(url, timeout = 5)
         response.raise_for_status() 
     except Exception as e:
         print(f"Failed to retrieve the webpage {url}: {e}. Skipping this website.")
         return None
     
-    if response.status_code != 200:
-        print(f"Failed to retrieve the webpage: {response.status_code}")
-        return None
-
     soup = BeautifulSoup(response.text, 'html.parser')    
     link_icon = soup.find('link', rel='icon')
     if not link_icon:
@@ -29,14 +25,14 @@ def retrieve_icon(url):
     favicon_url = link_icon['href']
     print(f"Found favicon at {favicon_url}")
 
-    # If the favicon URL is relative, make it absolute
     if not favicon_url.startswith('http'):
         favicon_url = requests.compat.urljoin(url, favicon_url)
 
-    # Request the favicon content
-    favicon_response = requests.get(favicon_url)
-    if favicon_response.status_code != 200:
-        print(f"Failed to retrieve the favicon: {favicon_response.status_code}")
+    try:
+        favicon_response = requests.get(favicon_url, timeout = 5)
+        favicon_response.raise_for_status()
+    except Exception as e:
+        print(f"Failed to retrieve the favicon: {e}. Skipping the website.")
         return None
 
     data_folder = './data'
