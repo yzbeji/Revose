@@ -13,4 +13,5 @@ However, after using data augmentation to obtain over 20,000 images, the model's
 The most difficult impediment for me was obtaining the right training set, as it required careful consideration and fine-tuning. 
 Once I had the data, the next challenge was analyzing and observing the results, ensuring they aligned with my expectations and provided meaningful insights for further refinement.
 This was also my first time using KMeans in a serious project, so understanding it properly and applying it in the right way was a really cool and rewarding experience.
+
 ![Figure_2](https://github.com/user-attachments/assets/33110fa4-a418-4bf7-b666-09af538ffb13)
