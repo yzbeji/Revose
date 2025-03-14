@@ -1,8 +1,9 @@
 from bs4 import BeautifulSoup
-from colorama import Fore, Back, Style
 import requests
 import os
 
+
+# Trying to scrape the favicon from the working websites
 def retrieve_icon(url):
     if not url.startswith('http'):
         url = 'https://' + url
